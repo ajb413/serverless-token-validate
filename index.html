@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Token Validator</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<input id="text" type="text">
+	<input id="submit" type="submit">
+	<p id="serverResponse"></p>
+</body>
+
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.20.2.js"></script>
+<script type="text/javascript">
+
+var text = document.getElementById('text');
+var submit = document.getElementById('submit');
+var serverResponse = document.getElementById('serverResponse');
+var onRequestUri = "__PubNub_Functions_URI__";
+
+function reqListener () {
+  serverResponse.innerHTML = this.status;
+}
+
+submit.addEventListener("click", function() {
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", reqListener);
+  req.open("GET", onRequestUri + "?token=" + text.value);
+  req.send();
+});
+
+</script>
+
+</html>
