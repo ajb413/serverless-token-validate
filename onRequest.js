@@ -3,7 +3,7 @@ export default (request, response) => {
 
   let paramsObject = request.params;
 
-  return vault.get("myToken").then((token) => {
+  return vault.get('myToken').then((token) => {
     if (paramsObject.token === token) {
       response.status = 200;
       return response.send();
